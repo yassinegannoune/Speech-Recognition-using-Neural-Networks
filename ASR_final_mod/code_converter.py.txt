@@ -1,0 +1,16 @@
+import os
+
+# Set the path to the librispeech folder
+librispeech_path = "C:\Users\21261\Downloads\proj\AIND-VUI-Capstone-master\AIND-VUI-Capstone-master\LibriSpeech"
+
+# Loop through all subdirectories in the librispeech folder
+for root, dirs, files in os.walk(librispeech_path):
+    for file in files:
+        # Check if the file is a FLAC file
+        if file.endswith(".flac"):
+            # Set the input and output file paths
+            input_path = os.path.join(root, file)
+            output_path = os.path.join(root, file.replace(".flac", ".wav"))
+            
+            # Run FFmpeg to convert the file to a WAV file
+            os.system(f"ffmpeg -i {input_path} {output_path}")
